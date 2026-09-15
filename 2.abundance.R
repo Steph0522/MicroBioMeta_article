@@ -76,3 +76,40 @@ both2 <- cowplot::plot_grid(heat_metabarcoding, heat_metagenomic, labels = "AUTO
 
 ggsave("plots/heats.png", width = 16, height = 6, units = "in", dpi = 300)
 
+#sankey
+
+sankey_metabarcoding <- abundance_sankey_plot(
+  table = table_fung,
+  taxonomy_db = "silva", 
+  maxn = 10,
+  taxRanks    = c("P", "C", "O", "F", "G"),
+  output_file = "sankey1.html"
+  
+  )
+
+sankey_metagenomic <- abundance_sankey_plot(
+  table = table_meta,
+  taxonomy_db = "Kraken2",
+  maxn = 10,   
+  taxRanks    = c("P", "C", "O", "F", "G"), 
+  output_file = "sankey2.html"
+)
+
+sankey_metabarcoding
+sankey_metagenomic
+
+
+library(htmlwidgets)
+library(webshot2)
+
+webshot("sankey1.html", vwidth = 800, vheight = 600, file = "sankey1.png")
+img1 <- png::readPNG("sankey1.png")
+g1 <- grid::rasterGrob(img1)
+
+webshot("sankey2.html", vwidth = 800, vheight = 600, file = "sankey2.png")
+img2 <- png::readPNG("sankey2.png")
+g2 <- grid::rasterGrob(img2)
+
+both3 <- cowplot::plot_grid(g1,g2, labels = c("A", "B"), label_size = 15, label_y = 1)
+
+ggsave("plots/sankeys.png", width = 10, height = 4, units = "in", dpi = 300)

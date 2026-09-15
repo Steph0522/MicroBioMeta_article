@@ -27,6 +27,8 @@ metadata_fungi <- fungi_metadata[
 table_fung <- merge_feature_taxonomy(table = table_fungi, 
                                      taxonomy = taxonomy_fungi)
 
+metadata_fungi$Treatment <- factor(metadata_fungi$Treatment, levels = c("TC", "TD", "TED"))
+metadata_fungi$Type_of_soil <- factor(metadata_fungi$Type_of_soil, levels = c("Bulk soil", "Rhizosphere", "Roots"))
 
 
 #table metagenomic
