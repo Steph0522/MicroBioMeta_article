@@ -50,4 +50,12 @@ metadata_meta$Polygon <- factor(paste0("Pol", metadata_meta$Poligono), levels = 
 metadata_meta$Site <- as.character(metadata_meta$Sitio)
 table_meta <- table_kraken[, c(metadata_meta$SAMPLEID, "taxonomy")]
 
+coord_meta <- read.csv("data/coord_metagenomic.csv") %>%
+  dplyr::select(-Site) %>% # drop the CSV's own overall site index (1-12); we want `Sitio` (1-2) instead
+  dplyr::rename(Polygon_num = pol, Site = Sitio) %>%
+  dplyr::select(Polygon_num, Site, Transecto, Latitude, Longitude)
 
+metadata_meta <- metadata_meta %>%
+  dplyr::mutate(Polygon_num = as.integer(gsub("Pol", "", Polygon)), Site = as.integer(Site)) %>%
+  dplyr::left_join(coord_meta, by = c("Polygon_num", "Site", "Transecto")) %>%
+  dplyr::mutate(Site = as.character(Site))

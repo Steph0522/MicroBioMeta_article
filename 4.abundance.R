@@ -8,6 +8,7 @@ barplot_metabarcoding <- abundance_bar_plot(
   taxonomy_db = "silva",
   level = "phylum", 
   x_col = "Type_of_soil",
+  facet_col = "Treatment",
   label = "Phylum", 
   x_axis_title = "Source", 
   add_remained = TRUE
