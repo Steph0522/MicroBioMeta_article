@@ -16,7 +16,7 @@ a1 <- alpha_hill_plot(table = table_fung,
                 metadata = metadata_fungi,
                 x_col = "Treatment",
                 fill_col = "Treatment",
-                facet_by = "Type_of_soil",
+                facet_by = "Source",
                 facet_orientation = "horizontal",
                 panel_labels = c("D", "E", "F", "G", "H", "I", "J", "K", "L"),
                 free_y = TRUE,
@@ -51,17 +51,17 @@ ggsave("plots/alphas2.png", width = 8, height = 12, units = "in", dpi = 300)
 
 #decay
 metadata_fungi_decay <- metadata_fungi %>%
-  filter(Type_of_soil %in% c("Bulk soil", "Rhizosphere"))
+  filter(Source %in% c("Bulk soil", "Rhizosphere"))
 
 ad <- alpha_decay_plot(table = table_fung,
                  metadata = metadata_fungi_decay,
                  cont_var = "pH",
-                 group_col = "Type_of_soil",
+                 group_col = "Source",
                  x_axis_title = "Soil pH")
 
 venn <- venn_plot(table = table_fung,   
           metadata = metadata_fungi,   
-          merge_by = "Type_of_soil",   
+          merge_by = "Source",   
           min_prevalence = 0 )
 
 
