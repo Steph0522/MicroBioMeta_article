@@ -37,7 +37,7 @@ beta<- cowplot::plot_grid(beta_fungi, betaperm_fungi,
                           labels = c("A", "B", "C", "D"),
                           label_y = 1, ncol = 2, nrow = 2, align = "hv")
 
-ggsave("plots/beta.png", width = 10, height = 7, units = "in", dpi = 300)
+ggsave("plots/beta.png", width = 12, height = 10, units = "in", dpi = 300)
 
 
 beta_decay_plot(
@@ -62,17 +62,19 @@ vs_roots_fung <- paste0(pmin(groups_fung, "Roots"), "_vs_", pmax(groups_fung, "R
 
 betadis <- beta_dissimilarity_plot(table = table_fung,
                         metadata = metadata_fungi,
-                        comparison_condition1 = c("Rhizosphere_vs_Roots", "Rhizosphere_vs_Rhizosphere", "Bulk soil_vs_Roots"),
+                        comparison_condition1 = c("Rhizosphere_vs_Roots", 
+                                                  "Rhizosphere_vs_Rhizosphere",
+                                                  "Bulk soil_vs_Roots"),
                         group_colors = c("Rhizosphere_vs_Roots" = "#E69F00",
                                          "Rhizosphere_vs_Rhizosphere" = "#56B4E9",
                                          "Bulk soil_vs_Roots" = "#009E73"),
                         condition1_col = "Source",
-                        condition2_col = "Treatment",
+                       # condition2_col = "Treatment",
                         x_axis_title = "Samples",
                         show_x_labels = FALSE,
                         x_label_angle = 45,
-                       # stat = "kruskal.test",
-                        partition = "turnover",
+                        stat = "kruskal.test",
+                        partition = "shared",
                         family = "jaccard",
                         save_table = FALSE)
 
@@ -83,12 +85,11 @@ betaturn <- beta_turnover_plot(
   comparison_condition1 = c("Rhizosphere_vs_Roots",
                             "Rhizosphere_vs_Rhizosphere",
                             "Bulk soil_vs_Roots"),
-  comparison_condition2 = c("TC_vs_TC", "TD_vs_TD", "TED_vs_TED"),
+  #comparison_condition2 = c("TC_vs_TC", "TD_vs_TD", "TED_vs_TED"),
   condition1.x          = "Source.x",
   condition1.y          = "Source.y",
-  condition2.x          = "Treatment.x",
-  condition2.y          = "Treatment.y",
-  facet_by              = "Treatment.x",
+ # condition2.x          = "Treatment.x",
+  #condition2.y          = "Treatment.y",
   #color_facets_x        = "#5D478B",
   color_axis_x          = c("Rhizosphere_vs_Roots" = "#E69F00",
                             "Rhizosphere_vs_Rhizosphere" = "#56B4E9",
