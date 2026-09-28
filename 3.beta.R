@@ -1,6 +1,8 @@
 source("1.load_data.R")
 
-
+# "compositional" usa una instancia Monte Carlo de ALDEx2 al azar:
+# set.seed() antes de cada llamada para obtener siempre el mismo resultado.
+set.seed(123)
 beta_fungi <- beta_ord_plot(table = table_fung,
               metadata = metadata_fungi,
               group_col = "Source",
@@ -8,6 +10,7 @@ beta_fungi <- beta_ord_plot(table = table_fung,
               distance = "compositional",
               ordination = "PCA")
 
+set.seed(123)
 betaperm_fungi <- beta_test_table(table = table_fung,
                 metadata= metadata_fungi,
                 formula_str = "Source",
@@ -69,8 +72,8 @@ betadis <- beta_dissimilarity_plot(table = table_fung,
                                          "Rhizosphere_vs_Rhizosphere" = "#56B4E9",
                                          "Bulk soil_vs_Roots" = "#009E73"),
                         condition1_col = "Source",
-                       # condition2_col = "Treatment",
-                        x_axis_title = "Samples",
+                        condition2_col = "Treatment",
+                        x_axis_title = "Section",
                         show_x_labels = FALSE,
                         x_label_angle = 45,
                         stat = "kruskal.test",
@@ -85,11 +88,10 @@ betaturn <- beta_turnover_plot(
   comparison_condition1 = c("Rhizosphere_vs_Roots",
                             "Rhizosphere_vs_Rhizosphere",
                             "Bulk soil_vs_Roots"),
-  #comparison_condition2 = c("TC_vs_TC", "TD_vs_TD", "TED_vs_TED"),
-  condition1.x          = "Source.x",
-  condition1.y          = "Source.y",
- # condition2.x          = "Treatment.x",
-  #condition2.y          = "Treatment.y",
+  condition1_col        = "Source",
+  # Para facetar por tratamiento, activar las dos lineas:
+  # comparison_condition2 = c("TC_vs_TC", "TD_vs_TD", "TED_vs_TED"),
+   condition2_col        = "Treatment",
   #color_facets_x        = "#5D478B",
   color_axis_x          = c("Rhizosphere_vs_Roots" = "#E69F00",
                             "Rhizosphere_vs_Rhizosphere" = "#56B4E9",
