@@ -1,7 +1,7 @@
 # 🍄🌱 MicroBioMeta_article
 
 > Code and data to reproduce the analyses and figures of the article
-> **"<!-- MicroBioMeta: An All-in-One R Package for microbiome data analysis and visualization -->"**, a showcase of the
+> **"MicroBioMeta: An All-in-One R Package for microbiome data analysis and visualization"**, a showcase of the
 > [**MicroBioMeta**](https://github.com/Steph0522/MicroBioMeta) R package 📦.
 
 MicroBioMeta helps beginners analyze and visualize microbiome data with minimal coding.
