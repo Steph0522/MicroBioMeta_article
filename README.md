@@ -1,7 +1,7 @@
 # 🍄🌱 MicroBioMeta_article
 
 > Code and data to reproduce the analyses and figures of the article
-> **"<!-- MicroBioMeta: An All-in-One R Package for microbiome data analysis and visualization -->"**, a showcase of the
+> **"MicroBioMeta: An All-in-One R Package for microbiome data analysis and visualization"**, a showcase of the
 > [**MicroBioMeta**](https://github.com/Steph0522/MicroBioMeta) R package 📦.
 
 MicroBioMeta helps beginners analyze and visualize microbiome data with minimal coding.
@@ -12,10 +12,10 @@ publication-ready figures.
 
 ## 🧬 Datasets
 
-| | Dataset | Samples grouped by | Data in `data/` |
+| Dataset | Samples grouped by | Data in `data/` | Citation |
 |---|---|---|---|
-| 🍄 | **Fungal metabarcoding** (QIIME 2, SILVA) | Source (Bulk soil, Rhizosphere, Roots) × Treatment (TC, TD, TED) | `table_fungi.qza`, `taxonomy_fungi.qza`, `metadata_fungis.txt` |
-| 🌍 | **Shotgun metagenomics** (Kraken2) | Polygon (Pol1–Pol6) + soil chemistry (pH, OM, N, P, K) | `table_kraken.txt`, `metadata_metagenomic.txt`, `coord_metagenomic.csv` |
+| **Fungal metabarcoding** (QIIME 2, SILVA) | Source (Bulk soil, Rhizosphere, Roots) × Treatment (TC, TD, TED) | `table_fungi.qza`, `taxonomy_fungi.qza`, `metadata_fungis.txt` |[(Hereira-Pacheco, et al. 2023)](https://www.sciencedirect.com/science/article/abs/pii/S1754504823000028) |  
+| **Shotgun metagenomics** (Kraken2) | Polygon (Pol1–Pol6) + soil chemistry (pH, OM, N, P, K) | `table_kraken.txt`, `metadata_metagenomic.txt`, `coord_metagenomic.csv` |[(Hereira-Pacheco, et al. 2025)](https://peerj.com/articles/18323/) |  
 
 ## 🗂️ Workflow
 
@@ -23,12 +23,12 @@ Run the scripts in order. Each one calls `1.load_data.R` and saves its figures t
 
 | Script | What it does | Main figure |
 |---|---|---|
-| 📥 `1.load_data.R` | Loads and preprocesses both datasets | — |
-| 📊 `2.alpha.R` | Alpha diversity (Hill numbers, Venn diagram, alpha vs pH, sequencing depth) | `alpha_fig.png`, `alpha_depth_supp.png` |
-| 🧭 `3.beta.R` | Beta diversity (ordinations, PERMANOVA, shared taxa, turnover, distance decay) | `beta_fig.png` |
-| 🧱 `4.abundance.R` | Taxonomic composition (barplots, heatmaps, Sankey diagrams) | `abundance_fig.png`, `heats.png` |
-| ⚖️ `5.differential_abundance.R` | Differential abundance (ALDEx2, ANCOM-BC2, random forest) | `differential_abundance.png` |
-| 🌡️ `6.environmental.R` | Taxa–environment links (Spearman correlations, RDA) | `environmental.png` |
+| `1.load_data.R` | Loads and preprocesses both datasets | — |
+| `2.alpha.R` | Alpha diversity (Hill numbers, Venn diagram, alpha vs pH, sequencing depth) | `alpha_fig.png`, `alpha_depth_supp.png` |
+| `3.beta.R` | Beta diversity (ordinations, PERMANOVA, shared taxa, turnover, distance decay) | `beta_fig.png` |
+| `4.abundance.R` | Taxonomic composition (barplots, heatmaps, Sankey diagrams) | `abundance_fig.png`, `heats.png` |
+| `5.differential_abundance.R` | Differential abundance (ALDEx2, ANCOM-BC2, random forest) | `differential_abundance.png` |
+| `6.environmental.R` | Taxa–environment links (Spearman correlations, RDA) | `environmental.png` |
 
 ## ⚙️ Requirements
 
@@ -50,7 +50,7 @@ Steps that involve randomness use `set.seed(123)`.
 
 ## 🖼️ Preview
 
-![Taxonomic composition](plots/abundance_fig.png)
+![Taxonomic composition](plots/differential_abundance.png)
 
 ## 📖 Citation
 
