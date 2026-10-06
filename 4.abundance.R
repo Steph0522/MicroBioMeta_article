@@ -7,8 +7,8 @@ barplot_metabarcoding <- abundance_bar_plot(
   metadata = metadata_fungi,
   taxonomy_db = "silva",
   level = "phylum", 
-  x_col = "Type_of_soil",
-  facet_by = "Treatment",
+  x_col = "Source",
+ # facet_by = "Treatment",
   label = "Phylum", 
   x_axis_title = "Source", 
   add_remained = TRUE
@@ -27,7 +27,7 @@ barplot_metagenomic <- abundance_bar_plot(
 
 both <- cowplot::plot_grid(barplot_metabarcoding, barplot_metagenomic, labels = "AUTO")
 
-ggsave("plots/barplots.png", width = 10, height = 6, units = "in", dpi = 300)
+#ggsave("plots/barplots.png", width = 10, height = 6, units = "in", dpi = 300)
 
 
 #heatmaps
@@ -46,12 +46,14 @@ table_fung1 <- table_fung[, c(
 
 heat_metabarcoding <- abundance_heatmap_plot(
   table = table_fung1,
-  metadata = metadata_fungi, condition1 = "Type_of_soil",  
+  metadata = metadata_fungi, 
+  condition1 = "Source",  
   show_column_names = FALSE,
 
-  top_n = 20)
+  top_n = 20,
+  cell_size = 4.5)
 
-# Ordenar metadata por Polygon
+# Order by polygon
 metadata_meta1 <- metadata_meta[
   order(metadata_meta$Polygon),
 ]
@@ -70,12 +72,13 @@ heat_metagenomic <- abundance_heatmap_plot(
   condition1 = "Polygon",
   cluster = FALSE,
   show_column_names = FALSE,
-  top_n = 20
+  top_n = 20,
+  cell_size = 4.5
 )
 
-both2 <- cowplot::plot_grid(heat_metabarcoding, heat_metagenomic, labels = "AUTO", rel_widths = c(1.5,1))
+both2 <- cowplot::plot_grid(heat_metabarcoding, heat_metagenomic, labels = "AUTO", ncol = 1)
 
-ggsave("plots/heats.png", width = 16, height = 6, units = "in", dpi = 300)
+ggsave("plots/heats.png", width = 17, height = 11.5, units = "in", dpi = 300, bg = "white")
 
 #sankey
 
@@ -84,7 +87,7 @@ sankey_metabarcoding <- abundance_sankey_plot(
   taxonomy_db = "silva", 
   maxn = 10,
   taxRanks    = c("P", "C", "O", "F", "G"),
-  output_file = "sankey1.html"
+  output_file = "plots/sankey1.html"
   
   )
 
@@ -93,7 +96,7 @@ sankey_metagenomic <- abundance_sankey_plot(
   taxonomy_db = "Kraken2",
   maxn = 10,   
   taxRanks    = c("P", "C", "O", "F", "G"), 
-  output_file = "sankey2.html"
+  output_file = "plots/sankey2.html"
 )
 
 sankey_metabarcoding
@@ -103,14 +106,24 @@ sankey_metagenomic
 library(htmlwidgets)
 library(webshot2)
 
-webshot("sankey1.html", vwidth = 800, vheight = 600, file = "sankey1.png")
-img1 <- png::readPNG("sankey1.png")
+webshot("plots/sankey1.html", vwidth = 800, vheight = 600, file = "plots/sankey1.png")
+img1 <- png::readPNG("plots/sankey1.png")
 g1 <- grid::rasterGrob(img1)
 
-webshot("sankey2.html", vwidth = 800, vheight = 600, file = "sankey2.png")
-img2 <- png::readPNG("sankey2.png")
+webshot("plots/sankey2.html", vwidth = 800, vheight = 600, file = "plots/sankey2.png")
+img2 <- png::readPNG("plots/sankey2.png")
 g2 <- grid::rasterGrob(img2)
 
 both3 <- cowplot::plot_grid(g1,g2, labels = c("A", "B"), label_size = 15, label_y = 1)
 
-ggsave("plots/sankeys.png", width = 10, height = 4, units = "in", dpi = 300)
+#ggsave("plots/sankeys.png", width = 10, height = 4, units = "in", dpi = 300)
+
+
+#final plot
+abundance_fig <- cowplot::plot_grid(
+  cowplot::plot_grid(barplot_metabarcoding, barplot_metagenomic,
+                     labels = c("A", "B"), label_size = 18),
+  cowplot::plot_grid(g1, g2, labels = c("C", "D"), label_size = 18),
+  ncol = 1, rel_heights = c(6, 5.3))
+ggsave("plots/abundance_fig.png", abundance_fig, width = 14, height = 11.3,
+       units = "in", dpi = 300, bg = "white")
