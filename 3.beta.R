@@ -37,8 +37,8 @@ beta_perm_meta <- beta_test_table(table = table_meta,
 
 
 
-beta<- cowplot::plot_grid(beta_fungi, ggplot2::autoplot(betaperm_fungi),
-                          beta_meta,  ggplot2::autoplot(beta_perm_meta),
+beta<- cowplot::plot_grid(beta_fungi, betaperm_fungi,
+                          beta_meta,  beta_perm_meta,
                           labels = c("A", "B", "C", "D"),
                           label_y = 1, ncol = 2, nrow = 2, align = "hv")
 
@@ -115,7 +115,7 @@ decay<-beta_decay_plot(
 #plot
 ord_row <- cowplot::plot_grid(beta_fungi, beta_meta, labels = c("A", "B"),
                               nrow = 1, align = "h")
-tab_row <- cowplot::plot_grid(ggplot2::autoplot(betaperm_fungi), ggplot2::autoplot(beta_perm_meta), labels = c("C", "D"),
+tab_row <- cowplot::plot_grid(betaperm_fungi, beta_perm_meta, labels = c("C", "D"),
                               nrow = 1)
 cmp_legend <- cowplot::get_legend(betadis + ggplot2::theme(legend.position = "bottom"))
 cmp_row <- cowplot::plot_grid(

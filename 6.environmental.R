@@ -28,7 +28,7 @@ rda_meta <- cca_rda_biplot(table = table_meta,
                            scale_arrows = 1,
                            title = NULL)
 
-env_fig <- cowplot::plot_grid(corr_genus, rda_meta, labels = "AUTO",
+env_fig <- cowplot::plot_grid(rda_meta, corr_genus, labels = "AUTO",
                               nrow = 1, rel_widths = c(1, 1.15))
 
 ggsave("plots/environmental.png", env_fig,
