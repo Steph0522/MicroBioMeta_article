@@ -48,6 +48,7 @@ heat_metabarcoding <- abundance_heatmap_plot(
   table = table_fung1,
   metadata = metadata_fungi, 
   condition1 = "Source",  
+  cluster = FALSE,
   show_column_names = FALSE,
 
   top_n = 20,
