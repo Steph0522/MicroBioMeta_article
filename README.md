@@ -23,12 +23,12 @@ Run the scripts in order. Each one calls `1.load_data.R` and saves its figures t
 
 | Script | What it does | Main figure |
 |---|---|---|
-| `1.load_data.R` | Loads and preprocesses both datasets | — |
-| `2.alpha.R` | Alpha diversity (Hill numbers, Venn diagram, alpha vs pH, sequencing depth) ([see the code](2.alpha.R)) | `alpha_fig.png`, `alpha_depth_supp.png` |
-| `3.beta.R` | Beta diversity (ordinations, PERMANOVA, shared taxa, turnover, distance decay) ([see the code](3.beta.R)) | `beta_fig.png` |
-| `4.abundance.R` | Taxonomic composition (barplots, heatmaps, Sankey diagrams) ([see the code](4.abundance.R)) | `abundance_fig.png`, `heats.png` |
-| `5.differential_abundance.R` | Differential abundance (ALDEx2, ANCOM-BC2, random forest) ([see the code](5.differential_abundance.R)) | `differential_abundance.png` |
-| `6.environmental.R` | Taxa–environment links (Spearman correlations, RDA) ([see the code](6.environmental.R)) | `environmental.png` |
+| `1.load_data.R` | Loads and preprocesses both datasets ([see the code](1.load_data.md)) | — |
+| `2.alpha.R` | Alpha diversity (Hill numbers, Venn diagram, alpha vs pH, sequencing depth) ([see the code and figures](2.alpha.md)) | `alpha_fig.png`, `alpha_depth_supp.png` |
+| `3.beta.R` | Beta diversity (ordinations, PERMANOVA, shared taxa, turnover, distance decay) ([see the code and figures](3.beta.md)) | `beta_fig.png` |
+| `4.abundance.R` | Taxonomic composition (barplots, heatmaps, Sankey diagrams) ([see the code and figures](4.abundance.md)) | `abundance_fig.png`, `heats.png` |
+| `5.differential_abundance.R` | Differential abundance (ALDEx2, ANCOM-BC2, random forest) ([see the code and figures](5.differential_abundance.md)) | `differential_abundance.png` |
+| `6.environmental.R` | Taxa–environment links (Spearman correlations, RDA) ([see the code and figures](6.environmental.md)) | `environmental.png` |
 | `7.comparation.R` | Comparison with phyloseq and rbiom (uses the example data of the package and saves to `figuras_comparacion/`; [see the code and figures](7.comparation.md)) | `Figure_S1_taxonomic_composition.png`, `Figure_S2_diversity_ordination.png` |
 
 ## Requirements
