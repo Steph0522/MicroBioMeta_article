@@ -29,6 +29,7 @@ Run the scripts in order. Each one calls `1.load_data.R` and saves its figures t
 | `4.abundance.R` | Taxonomic composition (barplots, heatmaps, Sankey diagrams) | `abundance_fig.png`, `heats.png` |
 | `5.differential_abundance.R` | Differential abundance (ALDEx2, ANCOM-BC2, random forest) | `differential_abundance.png` |
 | `6.environmental.R` | Taxa–environment links (Spearman correlations, RDA) | `environmental.png` |
+| `7.comparation.R` | Comparison with phyloseq and rbiom (uses the example data of the package and saves to `figuras_comparacion/`; [see the code and figures](7.comparation.md)) | `Figure_S1_taxonomic_composition.png`, `Figure_S2_diversity_ordination.png` |
 
 ## ⚙️ Requirements
 
